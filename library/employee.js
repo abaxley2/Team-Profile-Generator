@@ -1,19 +1,39 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-const getName = [
+const employee = [
     inquirer
         .prompt({
             type: 'input',
             message: 'What is your name?',
-            name: 'employeeName',
+            name: 'employee',
         })
         .then (({
-            employeeName
+            employee
         })=> {
-        const makehtml = 
+        const generateName = 
     `
-    
+    <div class="name"><h3>${employeeName}</h3></div>
+    `;
+    getName(employee,generateName);
+    })
+];
+
+function getName(employeeName,generateName)
+
+const getId = [
+    inquirer
+        .prompt({
+            type: 'input',
+            message: 'What is your ID?',
+            name: 'employeeID',
+        })
+        .then (({
+            employeeID
+        })=> {
+        const generateName = 
+    `
+    <div class="name"><h3>${employeeName}</h3></div>
     `
     })
 ];
