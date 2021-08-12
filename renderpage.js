@@ -4,10 +4,11 @@ const teamCards = (employees = {
         <div class="card-content">
 
                     <h2>Austin</h2>
-                    <div class="name"><h3>${manager.Name()}</h3></div>
-                    <div class="id">${manager.identity()}</div>
-                    <div class="email">${manager.Email()}</div>
-                    <div class="officenum">${manager.officeNumber()}</div>
+                    <div class="name"><h3>${manager.name()}</h3></div>
+                    <div class="id">${manager.empID()}</div>
+                    <div class="email">${manager.email()}</div>
+                    <div class="officenum">${manager.office()}</div>
+                    <div class="role">${manager.role()}</div>
                 </div>
         `
     }
