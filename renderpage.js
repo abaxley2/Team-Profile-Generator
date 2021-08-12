@@ -1,4 +1,18 @@
-const teamCards = (employees = {});
+const teamCards = (employees = {
+    const makeManager = manager => {
+        return `
+        <div class="card-content">
+
+                    <h2>Austin</h2>
+                    <div class="name"><h3>${manager.Name()}</h3></div>
+                    <div class="id">${manager.identity()}</div>
+                    <div class="email">${manager.Email()}</div>
+                    <div class="officenum">${manager.officeNumber()}</div>
+                </div>
+        `
+    }
+
+});
 
 // `<!DOCTYPE html>
 // <html lang="en">
