@@ -1,9 +1,9 @@
 // dependencies added
 const fs = require("fs");
 const inquirer = require("inquirer");
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const Manager = require("./library/manager");
+const Engineer = require("./library/engineer");
+const Intern = require("./library/intern");
 const path = require("path");
 const render = require("./dist/renderpage.js");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
