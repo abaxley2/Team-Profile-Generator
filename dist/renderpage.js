@@ -1,17 +1,72 @@
+// This page I had the most trouble with and had to look for help with the info provided.
+// I originally had a separate html file and moved it into here to work as was done in the solution.
+// as you can see in my original submission, this html and css was already created
+
+// dependencies
+const cards = [];
+
+// make cards based on inquirer inputs
 const teamCards = (employees) => {
   const makeManager = (manager) => {
     return `
-        <div class="card-content">
-            <div class="name"><h3>${manager.name()}</h3></div>
-            <div class="id">${manager.empID()}</div>
-            <div class="email">${manager.email()}</div>
-            <div class="officenum">${manager.office()}</div>
-            <div class="role">${manager.role()}</div>
-        </div>
-        `;
+    <div class="card-content">
+        <div class="name"><h3>${manager.empName()}</h3></div>
+        <div class="id">${manager.empId()}</div>
+        <div class="email">${manager.empEmail()}</div>
+        <div class="officenum">${manager.empOffice()}</div>
+        <div class="role">${manager.role()}</div>
+    </div>
+    `;
   };
+  //   push to cards array and filter by role
+  cards.push(
+    employees
+      .filter((employee) => employee.role() === "Manager")
+      .map((manager) => makeManager(manager))
+  );
+
+  const makeIntern = (intern) => {
+    return `
+    <div class="card-content">
+        <div class="name"><h3>${intern.name()}</h3></div>
+        <div class="id">${intern.empID()}</div>
+        <div class="email">${intern.email()}</div>
+        <div class="school">${intern.school()}</div>
+        <div class="role">${intern.role()}</div>
+    </div>
+    `;
+  };
+
+  cards.push(
+    employees
+      .filter((employee) => employee.role() === "Intern")
+      .map((intern) => makeIntern(intern))
+      .join("")
+  );
+
+  const makeEngineer = (engineer) => {
+    return `
+    <div class="card-content">
+        <div class="name"><h3>${engineer.name()}</h3></div>
+        <div class="id">${engineer.empID()}</div>
+        <div class="email">${engineer.email()}</div>
+        <div class="github">${engineer.github()}</div>
+        <div class="role">${engineer.role()}</div>
+    </div>
+    `;
+  };
+
+  cards.push(
+    employees
+      .filter((employee) => employee.role() === "Engineer")
+      .map((engineer) => makeEngineer(engineer))
+      .join("")
+  );
+
+  return cards.join("");
 };
 
+// export html
 module.exports = (employees) => {
   `<!DOCTYPE html>
 <html lang="en">

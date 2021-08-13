@@ -1,13 +1,16 @@
 // dependencies added
 const fs = require("fs");
 const inquirer = require("inquirer");
+// library files linked
 const Manager = require("./library/manager");
 const Engineer = require("./library/engineer");
 const Intern = require("./library/intern");
+// created a path
 const path = require("path");
-const render = require("./dist/renderpage.js");
-const OUTPUT_DIR = path.resolve(__dirname, "dist");
-const outputPath = path.join(OUTPUT_DIR, "team-profile.html");
+const render = require("./dist/renderpage");
+// added these because I couldn't figure out how to do it without looking
+const findDirectory = path.resolve(__dirname, "dist");
+const createHTML = path.join(findDirectory, "team-profile.html");
 
 // setup up arrays
 const employees = [];
@@ -71,7 +74,7 @@ function userPrompt() {
           answers.managerOfficeNumber
         );
         employees.push(manager);
-        employeeIDs.push(answer.managerId);
+        employeeIDs.push(answers.managerId);
         makeTeam();
       });
   }
@@ -144,7 +147,7 @@ function userPrompt() {
                   answers.engineerGithub
                 );
                 employees.push(engineer);
-                emplpoyeeIDs.push(answers.engineerId);
+                employeeIDs.push(answers.engineerId);
                 makeTeam();
               });
             break;
@@ -204,8 +207,8 @@ function userPrompt() {
                   answers.internSchool
                 );
                 employees.push(intern);
-                emplpoyeeIDs.push(answers.internId);
-                createTeam();
+                employeeIDs.push(answers.internId);
+                makeTeam();
               });
             break;
           default:
@@ -213,12 +216,12 @@ function userPrompt() {
         }
       });
   }
-
+  // this is the part I had trouble with and had to look up.
   function makeDirectory() {
-    if (!fs.existsSync(OUTPUT_DIR)) {
-      fs.mkdirSync(OUTPUT_DIR);
+    if (!fs.existsSync(findDirectory)) {
+      fs.mkdirSync(findDirectory);
     }
-    fs.writeFileSync(outputPath, render(employees), "utf-8");
+    fs.writeFileSync(createHTML, render(employees));
   }
 
   makeManager();
