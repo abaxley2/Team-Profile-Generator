@@ -4,12 +4,17 @@ const makeTeam = (employees) => {
   const teamArray = [];
 
   const generateManager = (manager) => {
-    return `<div class="card-content">
+    return `
+    <div class="card">
+    <div class="card-header">
   <div class="name"><h3>${manager.name}</h3></div>
-  <div class="id">${manager.id}</div>
-  <div class="email">${manager.email}</div>
-  <div class="officenum">${manager.officeNumber}</div>
+  </div>
+  <div class="card-body">
+  <div class="id">Manager ID: ${manager.id}</div>
+  <div class="email">Email: ${manager.email}</div>
+  <div class="officenum">Office Number: ${manager.officeNumber}</div>
   <div class="role">${manager.role}</div>
+  </div>
   </div>`;
   };
 
@@ -20,12 +25,16 @@ const makeTeam = (employees) => {
   );
 
   const generateEngineers = (engineer) => {
-    return `<div class="card-content">
+    return `<div class="card">
+  <div class="card-header">
   <div class="name"><h3>${engineer.name}</h3></div>
-  <div class="id">${engineer.id}</div>
-  <div class="email">${engineer.email}</div>
-  <div class="github">${engineer.github}</div>
+  </div>
+  <div class="card-body">
+  <div class="id">Engineer ID: ${engineer.id}</div>
+  <div class="email">Email: ${engineer.email}</div>
+  <div class="github">GitHub: ${engineer.github}</div>
   <div class="role">${engineer.role}</div>
+  </div>
 </div>`;
   };
 
@@ -37,12 +46,16 @@ const makeTeam = (employees) => {
   );
 
   const generateInterns = (intern) => {
-    return `<div class="card-content">
+    return `<div class="card">
+  <div class="card-header">
   <div class="name"><h3>${intern.name}</h3></div>
-  <div class="id">${intern.id}</div>
-  <div class="email">${intern.email}</div>
-  <div class="school">${intern.school}</div>
+  </div>
+  <div class="card-body">
+  <div class="id">Intern ID: ${intern.id}</div>
+  <div class="email">Email: ${intern.email}</div>
+  <div class="school">School: ${intern.school}</div>
   <div class="role">${intern.role}</div>
+  </div>
 </div>`;
   };
 
@@ -66,24 +79,12 @@ module.exports = (employees) => {
           <link rel="stylesheet" href="../dist/style.css" />
       </head>
       <body>
-      <header class="masthead clear">
-          <div class="centered">
-              <div class="site-branding">
-                  <h1 class="site-title">My Team</h1>
-              </div>
-          </div>
-      </header>
-      <main class="main-area">
-          <div class="centered">
-              <section class="cards">
-                  <article class="card">
-                      <div class="card-content">
-                          ${makeTeam(employees)}
-                      </div>
-                  </article>
-              </section>
-          </div>
-      </main>
-      </body>
+   <div class=header>
+       <h1>My Team</h1>
+   </div>
+   <div class="container-body">
+         ${makeTeam(employees)} 
+         </div>       
+    </body>
       </html>`;
 };
