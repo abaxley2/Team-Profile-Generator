@@ -1,7 +1,7 @@
 const cards = [];
 
 // make cards based on inquirer inputs
-const teamCards = (employees) => {
+const teamCards = (managerArray, engineerArray, internArray) => {
   const makeManager = (manager) => {
     return `
     <div class="card-content">
@@ -9,32 +9,32 @@ const teamCards = (employees) => {
         <div class="id">${manager.id}</div>
         <div class="email">${manager.email}</div>
         <div class="officenum">${manager.officeNumber}</div>
-        <div class="role">${manager.role()}</div>
+        <div class="role">${manager.role}</div>
     </div>
     `;
   };
   //   push to cards array and filter by role
   cards.push(
-    employees
-      .filter((employee) => employee.role() === "Manager")
+    managerArray
+      .filter((manager) => manager.role() === "Manager")
       .map((manager) => makeManager(manager))
   );
 
   const makeIntern = (intern) => {
     return `
     <div class="card-content">
-        <div class="name"><h3>${intern.empName()}</h3></div>
-        <div class="id">${intern.empID()}</div>
-        <div class="email">${intern.empEmail()}</div>
-        <div class="school">${intern.school()}</div>
-        <div class="role">${intern.role()}</div>
+        <div class="name"><h3>${intern.name}</h3></div>
+        <div class="id">${intern.id}</div>
+        <div class="email">${intern.email}</div>
+        <div class="school">${intern.school}</div>
+        <div class="role">${intern.role}</div>
     </div>
     `;
   };
 
   cards.push(
-    employees
-      .filter((employee) => employee.role() === "Intern")
+    internArray
+      .filter((intern) => intern.role() === "Intern")
       .map((intern) => makeIntern(intern))
       .join("")
   );
@@ -42,18 +42,18 @@ const teamCards = (employees) => {
   const makeEngineer = (engineer) => {
     return `
     <div class="card-content">
-        <div class="name"><h3>${engineer.name()}</h3></div>
-        <div class="id">${engineer.empID()}</div>
-        <div class="email">${engineer.email()}</div>
-        <div class="github">${engineer.github()}</div>
-        <div class="role">${engineer.role()}</div>
+        <div class="name"><h3>${engineer.name}</h3></div>
+        <div class="id">${engineer.id}</div>
+        <div class="email">${engineer.email}</div>
+        <div class="github">${engineer.github}</div>
+        <div class="role">${engineer.role}</div>
     </div>
     `;
   };
 
   cards.push(
-    employees
-      .filter((employee) => employee.role() === "Engineer")
+    engineerArray
+      .filter((engineer) => engineer.role() === "Engineer")
       .map((engineer) => makeEngineer(engineer))
       .join("")
   );
@@ -62,7 +62,7 @@ const teamCards = (employees) => {
 };
 
 // make HTML page
-const createHTML = (employees) => {
+const createHTML = (managerArray, internArray, engineerArray) => {
   `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +90,9 @@ const createHTML = (employees) => {
 
             <article class="card">
                 <div class="card-content">
-                    ${teamCards(employees)}
+                    ${teamCards(managerArray)}
+                    ${teamCards(internArray)}
+                    ${teamCards(engineerArray)}
                 </div>
             </article>
 
