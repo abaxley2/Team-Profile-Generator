@@ -61,8 +61,8 @@ const teamCards = (employees) => {
   return cards.join("");
 };
 
-// export html
-module.exports = (employees) => {
+// make HTML page
+const createHTML = (employees) => {
   `<!DOCTYPE html>
 <html lang="en">
 <head>
