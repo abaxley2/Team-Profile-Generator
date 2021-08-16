@@ -1,17 +1,27 @@
 // dependencies added
 const fs = require("fs");
 const inquirer = require("inquirer");
+const path = require("path");
 // library files linked
 const Manager = require("./library/manager");
 const Engineer = require("./library/engineer");
 const Intern = require("./library/intern");
-// createHTML linked
-const createHTML = require("./dist/renderpage.js");
+// output linked
+
+// referenced the solved folder to add these paths
+const moveToFolder = path.resolve(__dirname, "dist");
+const outputPath = path.join(moveToFolder, "my-team.html");
+
+const generateHTML = require("./dist/generateHTML.js");
 
 // setup up arrays
-let managerArray = [];
-let engineerArray = [];
-let internArray = [];
+let employees = [];
+
+// error handling
+const errorMessage = (error) => {
+  var error = document.getElementById("error");
+  error.textContent = "Unable to create Team!";
+};
 
 // functions for users
 
@@ -52,14 +62,15 @@ inquirer
       answers.email,
       answers.officeNumber
     );
-    managerArray = manager;
+    employees.push(manager);
     if (answers.userChoice === "Add Engineer") {
       makeEngineer();
     } else if (answers.userChoice === "Add Intern") {
       makeIntern();
     } else if (answers.userChoice === "Set team and EXIT") {
       console.log("Team Created!");
-      compileTeam();
+      console.log(employees);
+      makeTeam();
     }
   });
 
@@ -102,14 +113,15 @@ function makeEngineer() {
         answers.email,
         answers.github
       );
-      engineerArray = engineer;
+      employees.push(engineer);
       if (answers.userChoice === "Add Engineer") {
         makeEngineer();
       } else if (answers.userChoice === "Add Intern") {
         makeIntern();
       } else if (answers.userChoice === "Set team and EXIT") {
         console.log("Team Created!");
-        compileTeam();
+        console.log(employees);
+        makeTeam();
       }
     });
 }
@@ -152,27 +164,23 @@ function makeIntern() {
         answers.email,
         answers.school
       );
-      internArray = intern;
+      employees.push(intern);
       if (answers.userChoice === "Add Engineer") {
         makeEngineer();
       } else if (answers.userChoice === "Add Intern") {
         makeIntern();
       } else if (answers.userChoice === "Set team and EXIT") {
         console.log("Team Created!");
-        compileTeam();
+        console.log(employees);
+        makeTeam();
       }
     });
 }
 
-const errorMessage = (error) => {
-  var error = document.getElementById("error");
-  error.textContent = "Unable to create Team!";
-};
-
-function compileTeam() {
-  fs.writeFile(
-    "./dist/MyTeam.html",
-    createHTML(managerArray, internArray, engineerArray),
-    errorMessage
-  );
+function makeTeam() {
+  // had to reference the solved folder to get this as I could not get this function to work.
+  if (!fs.existsSync(moveToFolder)) {
+    fs.mkdirSync(moveToFolder);
+  }
+  fs.writeFileSync(outputPath, generateHTML(employees), errorMessage);
 }
