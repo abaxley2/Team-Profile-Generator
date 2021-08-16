@@ -6,9 +6,9 @@ This application was a test of my use of NodeJS's fs package and inquirer. This 
 
 ## Dependencies
 
-This application uses the following to deploy and run:  
--NodeJS
--Inquirer
+This application uses the following to deploy and run:    
+-NodeJS  
+-Inquirer  
 
 This application was tested with Jest.
 
@@ -21,4 +21,6 @@ AusBaxley@gmail.com
 
 https://github.com/abaxley2/Team-Profile-Generator
 
-## Video Link
+## Video Link  
+
+https://youtu.be/F4Jc7bf6WMo
